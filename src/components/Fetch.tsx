@@ -35,7 +35,7 @@ const Fetch = () => {
 
   return (
     <div>
-      <button onClick={handleFetchData}>Fetch Data</button>
+      <button onClick={handleFetchData}>데이터 불러오기</button>
       {loading && <p>로딩중...</p>}
       {error && <p>에러 발생!: {error}</p>}
       {data && <div>데이터: {JSON.stringify(data)}</div>}
