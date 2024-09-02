@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import fetchData from "./fetchData";
 
 const Fetch = () => {
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-  const [image, setImage] = useState<string>("");
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [image, setImage] = useState("");
 
   const handleFetchData = async () => {
     setLoading(true);
