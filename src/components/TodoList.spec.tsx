@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import TodoList from "../components/TodoList";
+import { render, fireEvent, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
 
 describe("TodoList Component", () => {
   it("새로운 To-Do 항목을 추가할 수 있어야 한다", () => {

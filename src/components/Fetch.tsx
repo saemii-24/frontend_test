@@ -1,21 +1,12 @@
-"use client";
 import Image from "next/image";
 import React, { useState } from "react";
-
-const fetchData = async () => {
-  const response = await fetch("https://dummyapi.online/api/movies");
-
-  if (!response.ok) {
-    throw new Error("데이터를 불러오는 데 실패했습니다.");
-  }
-  return response.json();
-};
+import fetchData from "./fetchData";
 
 const Fetch = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [image, setImage] = useState("");
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [image, setImage] = useState<string>("");
 
   const handleFetchData = async () => {
     setLoading(true);
