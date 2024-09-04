@@ -1,8 +1,12 @@
 "use client";
+import { AComponent } from "@/components/AComponent";
+import AllComponent from "@/components/AllComponent";
+import { BComponent } from "@/components/BComponent";
 import Fetch from "@/components/Fetch";
 import Memo from "@/components/Memo";
 import TodoList from "@/components/TodoList";
 import Toggle from "@/components/Toggle";
+import { CountProvider } from "@/context/CountContext";
 import { useState } from "react";
 
 export default function Home() {
@@ -19,6 +23,7 @@ export default function Home() {
         }}
         count={count}
       />
+      <AllComponent />
     </>
   );
 }
