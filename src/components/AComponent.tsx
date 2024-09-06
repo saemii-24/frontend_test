@@ -7,7 +7,7 @@ export const AComponent: React.FC = () => {
   return (
     <div className="p-4 bg-yellow-200">
       <h2>A Component</h2>
-      <p>Count: {count}</p>
+      <p data-testid="a-count">Count: {count}</p>
       <button onClick={increment} className="px-5 bg-orange-400">
         Increment
       </button>

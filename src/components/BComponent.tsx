@@ -7,7 +7,7 @@ export const BComponent: React.FC = () => {
   return (
     <div className="p-4 bg-blue-200">
       <h2>B Component</h2>
-      <p>Count: {count}</p>
+      <p data-testid="b-count">Count: {count}</p>
     </div>
   );
 };
