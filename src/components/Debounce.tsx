@@ -4,7 +4,6 @@ import React, { useState } from "react";
 function debounce(func: (...args: any[]) => void, delay: number) {
   let timeout: ReturnType<typeof setTimeout>;
 
-  // 디바운스된 함수 반환
   return (...args: any[]) => {
     clearTimeout(timeout); // 이전 타이머 취소
     timeout = setTimeout(() => {
@@ -15,17 +14,13 @@ function debounce(func: (...args: any[]) => void, delay: number) {
 
 // Debounce 컴포넌트
 export const Debounce = () => {
-  const [value, setValue] = useState("");
-
-  // 새로운 값이 들어왔을 때 호출되는 함수 (debounced)
-  const onDebouncedChange = (newValue: string) => {
-    console.log("Debounced value:", newValue); // 여기서 디바운스된 값 처리
-  };
+  const [value, setValue] = useState(""); // 입력된 값
+  const [debouncedValue, setDebouncedValue] = useState(""); // 디바운스된 값
 
   // 디바운스된 이벤트 핸들러
   const debouncedChangeHandler = debounce((newValue: string) => {
-    onDebouncedChange(newValue);
-  }, 500);
+    setDebouncedValue(newValue); // 디바운스된 값을 상태에 저장
+  }, 5000); // 5000ms = 5초
 
   // 입력이 바뀔 때 호출되는 함수
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,11 +29,14 @@ export const Debounce = () => {
   };
 
   return (
-    <input
-      data-testid="debounced-input"
-      type="text"
-      value={value}
-      onChange={handleChange} // 입력 변경 시 핸들러 호출
-    />
+    <div>
+      <input
+        data-testid="debounced-input"
+        type="text"
+        value={value}
+        onChange={handleChange} // 입력 변경 시 핸들러 호출
+      />
+      <p>디바운스된 값: {debouncedValue}</p> {/* 디바운스된 값 표시 */}
+    </div>
   );
 };
