@@ -1,38 +1,36 @@
 import React, { useState } from "react";
 
-interface DebouncedInputProps {
-  onDebouncedChange: (value: string) => void;
-}
-
-export function debounce(func: (...args: any[]) => void, delay: number) {
-  // 타이머를 저장할 변수 선언
+// debounce 함수: 연속된 이벤트 호출을 지연시키는 역할
+function debounce(func: (...args: any[]) => void, delay: number) {
   let timeout: ReturnType<typeof setTimeout>;
 
   // 디바운스된 함수 반환
   return (...args: any[]) => {
-    // 이전에 설정된 타이머가 있으면 취소 (연속 호출 시 이전 호출 무시)
-    clearTimeout(timeout);
-
-    // 새로운 타이머 설정, 지정된 지연 시간 후에 함수 호출
+    clearTimeout(timeout); // 이전 타이머 취소
     timeout = setTimeout(() => {
-      func(...args); // 지연 시간 후에 원래 함수 호출
+      func(...args); // 지연 후 원래 함수 실행
     }, delay);
   };
 }
 
-export const DebouncedInput: React.FC<DebouncedInputProps> = ({
-  onDebouncedChange,
-}) => {
+// Debounce 컴포넌트
+export const Debounce = () => {
   const [value, setValue] = useState("");
 
-  //사용자가 입력을 멈추고 500밀리초 동안 추가 입력이 없을 때 onDebouncedChange 함수가 호출
+  // 새로운 값이 들어왔을 때 호출되는 함수 (debounced)
+  const onDebouncedChange = (newValue: string) => {
+    console.log("Debounced value:", newValue); // 여기서 디바운스된 값 처리
+  };
+
+  // 디바운스된 이벤트 핸들러
   const debouncedChangeHandler = debounce((newValue: string) => {
     onDebouncedChange(newValue);
   }, 500);
 
+  // 입력이 바뀔 때 호출되는 함수
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    debouncedChangeHandler(e.target.value);
+    setValue(e.target.value); // 상태 업데이트
+    debouncedChangeHandler(e.target.value); // 디바운스된 함수 호출
   };
 
   return (
@@ -40,7 +38,7 @@ export const DebouncedInput: React.FC<DebouncedInputProps> = ({
       data-testid="debounced-input"
       type="text"
       value={value}
-      onChange={handleChange}
+      onChange={handleChange} // 입력 변경 시 핸들러 호출
     />
   );
 };

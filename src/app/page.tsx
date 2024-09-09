@@ -2,6 +2,7 @@
 import { AComponent } from "@/components/AComponent";
 import AllComponent from "@/components/AllComponent";
 import { BComponent } from "@/components/BComponent";
+import { Debounce } from "@/components/Debounce";
 import Fetch from "@/components/Fetch";
 import Memo from "@/components/Memo";
 import TodoList from "@/components/TodoList";
@@ -24,6 +25,7 @@ export default function Home() {
         count={count}
       />
       <AllComponent />
+      <Debounce />
     </>
   );
 }
