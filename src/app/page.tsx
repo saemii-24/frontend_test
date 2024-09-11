@@ -4,6 +4,7 @@ import AllComponent from "@/components/AllComponent";
 import { BComponent } from "@/components/BComponent";
 import Fetch from "@/components/Fetch";
 import Memo from "@/components/Memo";
+import { RequestAnimation } from "@/components/RequestAnimation";
 import TodoList from "@/components/TodoList";
 import Toggle from "@/components/Toggle";
 import { CountProvider } from "@/context/CountContext";
@@ -24,6 +25,7 @@ export default function Home() {
         count={count}
       />
       <AllComponent />
+      <RequestAnimation />
     </>
   );
 }
