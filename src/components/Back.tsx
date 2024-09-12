@@ -8,5 +8,5 @@ export const Back = () => {
     router.back();
   };
 
-  return <button onClick={handleGoBack}>Go Back</button>;
+  return <button onClick={handleGoBack}>뒤로 가기</button>;
 };
