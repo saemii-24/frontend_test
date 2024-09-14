@@ -10,9 +10,15 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@opentelemetry/exporter-trace-otlp-http": "^0.53.0",
+    "@opentelemetry/resources": "^1.26.0",
+    "@opentelemetry/sdk-node": "^0.53.0",
+    "@opentelemetry/sdk-trace-node": "^1.26.0",
+    "@opentelemetry/semantic-conventions": "^1.27.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
+    "@vercel/otel": "^1.10.0",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
