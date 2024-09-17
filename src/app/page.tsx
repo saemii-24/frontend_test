@@ -6,6 +6,7 @@ import { RequestAnimation } from "@/components/RequestAnimation";
 import TodoList from "@/components/TodoList";
 import Toggle from "@/components/Toggle";
 import { UseModal } from "@/components/UseModal";
+import ZustandComponent from "@/zustand/ZustandComponent";
 import { useState } from "react";
 
 export default function Home() {
@@ -25,6 +26,7 @@ export default function Home() {
       <AllComponent />
       <RequestAnimation />
       <UseModal />
+      <ZustandComponent />
     </>
   );
 }

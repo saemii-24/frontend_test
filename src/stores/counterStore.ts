@@ -1,3 +1,4 @@
+// stores/counterStore.ts
 import { create } from "zustand";
 
 // Define the state and actions
