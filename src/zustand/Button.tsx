@@ -15,10 +15,18 @@ const Button: React.FC = () => {
 
   return (
     <>
-      <button className="w-10 h-8 bg-red-400" onClick={decrementClick}>
+      <button
+        data-testid="minus"
+        className="w-10 h-8 bg-red-400"
+        onClick={decrementClick}
+      >
         -
       </button>
-      <button className="w-10 h-8 bg-blue-400" onClick={incrementClick}>
+      <button
+        data-testid="plus"
+        className="w-10 h-8 bg-blue-400"
+        onClick={incrementClick}
+      >
         +
       </button>
     </>
