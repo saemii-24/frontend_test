@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Animation = () => {
   // boxRef의 타입을 명시적으로 HTMLDivElement | null로 설정
@@ -30,21 +30,23 @@ const Animation = () => {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        className="bg-red-200 p-2 mb-10"
-        onClick={boxAnimation}
-      >
-        애니메이션 시작
-      </button>
-      <div
-        ref={boxRef}
-        className="w-20 h-20 bg-green-300"
-        style={{ transform: "translateX(0px)" }}
-        id="box"
-      ></div>
-    </div>
+    <>
+      <div>
+        <button
+          type="button"
+          className="bg-red-200 p-2 mb-10"
+          onClick={boxAnimation}
+        >
+          애니메이션 시작
+        </button>
+        <div
+          ref={boxRef}
+          className="w-20 h-20 bg-green-300"
+          style={{ transform: "translateX(0px)" }}
+          id="box"
+        ></div>
+      </div>
+    </>
   );
 };
 

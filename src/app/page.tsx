@@ -6,6 +6,7 @@ import { RequestAnimation } from "@/components/RequestAnimation";
 import TodoList from "@/components/TodoList";
 import Toggle from "@/components/Toggle";
 import Animation from "@/components/Animation";
+import ChatAnimation from "@/components/ChatAnimation";
 import { UseModal } from "@/components/UseModal";
 import ZustandComponent from "@/zustand/ZustandComponent";
 import { useState } from "react";
@@ -29,6 +30,7 @@ export default function Home() {
       <UseModal />
       <ZustandComponent />
       <Animation />
+      <ChatAnimation />
     </>
   );
 }
