@@ -5,6 +5,7 @@ import Memo from "@/components/Memo";
 import { RequestAnimation } from "@/components/RequestAnimation";
 import TodoList from "@/components/TodoList";
 import Toggle from "@/components/Toggle";
+import Animation from "@/components/Animation";
 import { UseModal } from "@/components/UseModal";
 import ZustandComponent from "@/zustand/ZustandComponent";
 import { useState } from "react";
@@ -27,6 +28,7 @@ export default function Home() {
       <RequestAnimation />
       <UseModal />
       <ZustandComponent />
+      <Animation />
     </>
   );
 }
