@@ -32,14 +32,17 @@ const ChatAnimation = () => {
   const simulateTypingEffect = (message: string) => {
     setIsTyping(true);
     setTypingMessage(""); // 초기화
-    let charIndex = 0;
+    let charIndex = -1;
+
+    console.log(charIndex);
 
     const interval = setInterval(() => {
       // 현재 fullMessage 길이 체크 후 한 글자씩 추가
       setTypingMessage((prev) => prev + message[charIndex]);
+      console.log(typingMessage);
       charIndex++;
 
-      if (charIndex >= message.length) {
+      if (charIndex > message.length - 1) {
         clearInterval(interval);
         setIsTyping(false);
         // 타이핑 완료 후 메시지 추가
