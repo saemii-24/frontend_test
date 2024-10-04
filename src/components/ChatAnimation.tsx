@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Message {
   text: string;
@@ -8,9 +8,8 @@ interface Message {
 
 const ChatAnimation = () => {
   const [messages, setMessages] = useState<Message[]>([]);
-  const [typingMessage, setTypingMessage] = useState(""); // 타이핑 중인 메시지
   const [isTyping, setIsTyping] = useState(false); // 타이핑 여부
-  const [fullMessage, setFullMessage] = useState(""); // 현재 타이핑할 전체 메시지
+  const [fullMessagesQueue, setFullMessagesQueue] = useState<string[]>([]); // 타이핑할 메시지들
 
   // 메시지 추가하는 함수
   const addMessage = () => {
@@ -20,36 +19,32 @@ const ChatAnimation = () => {
     // 내 메시지 추가
     setMessages((prev) => [...prev, { text: myMessage, isMyMessage: true }]);
 
-    // 상대방의 n번째 응답 추가
-    setTimeout(() => {
-      const yourResponseMessage = `상대방의 ${nowMessageNum}번째 응답입니다.`;
-      setFullMessage(yourResponseMessage);
-      simulateTypingEffect(yourResponseMessage); // 타이핑 효과 시작
-    }, 500); // 내 메시지 후 0.5초 후에 상대방 메시지 추가
+    // 상대방의 여러 메시지를 추가하기 위한 배열
+    const responseMessages = [
+      `상대방의 ${nowMessageNum}번째 응답입니다.`,
+      "더 물어볼 말이 있으신가요?",
+    ];
+
+    // 타이핑 효과를 위해 메시지를 큐에 추가
+    setFullMessagesQueue((prev) => [...prev, ...responseMessages]);
   };
 
-  // 타이핑 효과 함수
-  const simulateTypingEffect = (message: string) => {
-    setIsTyping(true);
-    setTypingMessage(""); // 초기화
-    let charIndex = -1;
+  // useEffect로 메시지 큐 처리
+  useEffect(() => {
+    const handleMessagesQueue = () => {
+      if (!isTyping && fullMessagesQueue.length > 0) {
+        const message = fullMessagesQueue[0]; // 첫 번째 메시지 가져오기
+        setIsTyping(true); // 타이핑 시작
 
-    console.log(charIndex);
+        setMessages((prev) => [...prev, { text: message, isMyMessage: false }]); // 메시지 추가
 
-    const interval = setInterval(() => {
-      // 현재 fullMessage 길이 체크 후 한 글자씩 추가
-      setTypingMessage((prev) => prev + message[charIndex]);
-      console.log(typingMessage);
-      charIndex++;
-
-      if (charIndex > message.length - 1) {
-        clearInterval(interval);
-        setIsTyping(false);
-        // 타이핑 완료 후 메시지 추가
-        setMessages((prev) => [...prev, { text: message, isMyMessage: false }]);
+        setFullMessagesQueue((prev) => prev.slice(1)); // 첫 번째 메시지를 큐에서 제거
+        setIsTyping(false); // 타이핑 종료
       }
-    }, 100); // 100ms마다 한 글자씩 추가
-  };
+    };
+
+    handleMessagesQueue();
+  }, [fullMessagesQueue, isTyping]);
 
   return (
     <div className="w-[800px]">
@@ -70,16 +65,19 @@ const ChatAnimation = () => {
                 : "bg-gray-600 text-white self-start"
             }`}
           >
-            {message.text}
+            {message.text.split("").map((char, charIndex) => (
+              <span
+                key={charIndex}
+                className={`text-white inline-block opacity-0 animation-fade-in`}
+                style={{
+                  animationDelay: `${charIndex * 0.1}s`, // 글자마다 지연 시간 적용
+                }}
+              >
+                {char}
+              </span>
+            ))}
           </div>
         ))}
-
-        {/* 상대방의 메시지가 타이핑 중일 때 표시 */}
-        {isTyping && (
-          <div className="max-w-[250px] p-4 m-2 bg-gray-600 text-white self-start">
-            {typingMessage}
-          </div>
-        )}
       </div>
     </div>
   );
