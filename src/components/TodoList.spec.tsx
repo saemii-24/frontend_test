@@ -28,7 +28,7 @@ describe("TodoList Component", () => {
   });
 
   it("addTodo 함수가 새로운 항목을 추가할 때 호출되는지 확인한다", () => {
-    // addTodo 함수가 호출되는지 확인하기 위해 jest.fn()을 사용하여 mock 함수 생성
+    // addTodo 함수가 호출되는지 확인하기 위해 vi.fn()을 사용하여 mock 함수 생성
     // 테스트에서 특정 함수의 동작을 가짜로 만들어서 테스트의 유연성을 높이고,
     // 실제 구현에 의존하지 않고도 원하는 결과를 검증하게 함
     const mockAddTodo = vi.fn();
