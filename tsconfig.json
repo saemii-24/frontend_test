@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "types": ["node", "jest", "@testing-library/jest-dom"],
+    "types": ["node", "jest", "@testing-library/jest-dom", "vitest/globals"],
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
